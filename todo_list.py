@@ -88,6 +88,40 @@ class TodoList:
                         # Mark the item as completed and move it to the target day item
                         target_day_item.add_item(item)
 
+    def show_all_unfinished_task(self):
+        """
+        Shows unfinished tasks from all initialized dates
+        
+        Args:
+            None.
+
+        Returns:
+            the array of all unfinished tasks
+        """
+        unfinished = []
+        print("当前未完成的task：")
+        for task_item in self.all_items:
+            if task_item.status == '未完成':
+                print(task_item)
+                unfinished.append(task_item)
+        return unfinished
+
+    def finish_task_item(self,task_id):
+        """
+        Finish the task whose task_id is input
+
+        Args:
+            task_id
+
+        Returns:
+            the result of finish operation(True or False)
+        """
+        cur_task_item = self.get_task_item(task_id)
+        if cur_task_item is None:
+            return False
+        cur_task_item.status = '已完成'
+        return True
+
     def save(self, filename):
         """
         Save the TodoList to a file.
@@ -159,6 +193,10 @@ todolist = TodoList()
 # a = todolist.get_task_item(1)
 # todolist.merge(datetime(2023,12,6))
 # todolist.restore("todolist.log")
-#
+# #
+# print(todolist)
+# a = todolist.show_all_unfinished_task()
+# todolist.finish_task_item(1)
+# todolist.show_all_unfinished_task()
 # print(todolist)
 # todolist.save("todolist.log")
