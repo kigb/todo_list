@@ -231,7 +231,7 @@ class TodoList:
         return "\n".join(str(day_item) for day_item in self.day_items)
 
 #test
-todolist = TodoList()
+# todolist = TodoList()
 # a = todolist.find_or_create_day_item(datetime(2020, 1, 1))
 # b = todolist.find_or_create_day_item(datetime(2020, 1, 2))
 # a.add_item(TodoListItem("复习编译原理",datetime(2023,12,6)))
@@ -242,11 +242,11 @@ todolist = TodoList()
 # todolist.add("复习编译原理1",datetime(2023,12,6))
 # a = todolist.get_task_item(1)
 # todolist.merge(datetime(2023,12,6))
-todolist.restore("todolist.log")
-# #
-print(todolist)
-todolist.delete_task_item(1)
-todolist.show_date_tasks(datetime(2023,12,6))
+# todolist.restore("todolist.log")
+# # #
+# print(todolist)
+# todolist.delete_task_item(1)
+# todolist.show_date_tasks(datetime(2023,12,6))
 # a = todolist.show_all_unfinished_task()
 # todolist.finish_task_item(1)
 # todolist.show_all_unfinished_task()
