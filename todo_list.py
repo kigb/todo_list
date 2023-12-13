@@ -1,5 +1,6 @@
 from todo_list_day_items import TodoListDayItems
 from todo_list_item import TodoListItem
+from datetime import datetime
 import pickle
 class TodoList:
     """
@@ -121,6 +122,55 @@ class TodoList:
             return False
         cur_task_item.status = '已完成'
         return True
+    
+    def show_date_tasks(self, target_date):
+        """
+        Show the tasks of the target_date
+
+        Args:
+            target_date
+
+        Returns:
+            the array of all tasks of the target_date
+        """
+        target_day_item = self.find_or_create_day_item(target_date)
+        print(target_day_item)
+        return target_day_item.items
+    
+    def dump_task_item(self, task_id):
+        """
+        Dump the task whose task_id is input
+
+        Args:
+            task_id
+
+        Returns:
+            the result of dump operation(True or False)
+        """
+        cur_task_item = self.get_task_item(task_id)
+        if cur_task_item is None:
+            return False
+        cur_task_item.status = '已放弃'
+        return True
+    
+    def delete_task_item(self, task_id):
+        """
+        Delete the task whose task_id is input
+
+        Args:
+            task_id
+
+        Returns:
+            the result of delete operation(True or False)
+        """
+        cur_task_item = self.get_task_item(task_id)
+        if cur_task_item is None:
+            return False
+        self.all_items.remove(cur_task_item)
+        for day_item in self.day_items:
+            if cur_task_item in day_item.items:
+                day_item.items.remove(cur_task_item)
+        return True
 
     def save(self, filename):
         """
@@ -192,9 +242,11 @@ todolist = TodoList()
 # todolist.add("复习编译原理1",datetime(2023,12,6))
 # a = todolist.get_task_item(1)
 # todolist.merge(datetime(2023,12,6))
-# todolist.restore("todolist.log")
+todolist.restore("todolist.log")
 # #
-# print(todolist)
+print(todolist)
+todolist.delete_task_item(1)
+todolist.show_date_tasks(datetime(2023,12,6))
 # a = todolist.show_all_unfinished_task()
 # todolist.finish_task_item(1)
 # todolist.show_all_unfinished_task()
