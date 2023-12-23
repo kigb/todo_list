@@ -1,7 +1,7 @@
 from todo_list import TodoList
 from datetime import datetime
 import argparse
-
+from designed_output import todo_output
 """
     Add a new task to the todo list.
 """
@@ -102,8 +102,10 @@ def parse_command(args,todolist):
         date_list = date_str.split('-')
         date_list = [int(x) for x in date_list]
         date = datetime(date_list[0],date_list[1],date_list[2])
+        todo_output()
         todolist.show_date_tasks(date)
     elif args.command == 'showall':
+        todo_output()
         print(todolist)
     elif args.command == 'showunfinished':
         todolist.show_all_unfinished_task()
