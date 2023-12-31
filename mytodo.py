@@ -108,6 +108,7 @@ def parse_command(args,todolist):
         todo_output()
         print(todolist)
     elif args.command == 'showunfinished':
+        todo_output()
         todolist.show_all_unfinished_task()
     elif args.command == 'merge':
         date_str = args.date
